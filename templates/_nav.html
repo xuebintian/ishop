@@ -1,0 +1,26 @@
+<nav id="nav" class="flex-column flex-md-row">
+    <el-menu default-active="activeIndex"
+             class="border-bottom-0"
+             mode="horizontal"
+             background-color="#3eb489"
+             text-color="#fff"
+             active-text-color="#ffd04b"
+             @select="handleSelect">
+        <el-menu-item class="ml-5" index="0">
+            <el-link :underline="false" href="/">
+                <img src="/static/img/logo.png" width="75">
+            </el-link>
+
+        </el-menu-item>
+        <el-menu-item index="1">
+            <el-link :underline="false" href="{% url 'goods:index' %}">1</el-link>
+        </el-menu-item>
+        <el-menu-item index="2">
+            <el-link :underline="false" href="{% url 'goods:index' %}">2</el-link>
+        </el-menu-item>
+        </el-menu-item>
+        <el-menu-item class="float-right mr-5" index="4">
+            <el-link :underline="false" href="{% url 'account:index' %}">{{ user.fullname }}</el-link>
+        </el-menu-item>
+    </el-menu>
+</nav>

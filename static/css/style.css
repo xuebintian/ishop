@@ -1,0 +1,23 @@
+#nav a:hover,
+#nav a:focus {
+  text-decoration: none;
+}
+.el-header,
+.el-footer {
+  text-align: center;
+  line-height: 60px;
+}
+.el-aside {
+  color: #333;
+  text-align: center;
+  line-height: 200px;
+}
+.m-table {
+  width: 100%;
+}
+.m-table th,
+.m-table td {
+  padding: 5px 0;
+  text-align: center;
+}
+/*# sourceMappingURL=tools.style.css.map */

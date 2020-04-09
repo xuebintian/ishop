@@ -1,0 +1,32 @@
+<!DOCTYPE html>{% load static compress %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ title|default:_("ishop") }}</title>
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+    {% compress css %}
+        <link rel="stylesheet" href="{% static 'css/element/index.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/vendor/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/app/style.css' %}">
+        {% block style %}{% endblock %}
+    {% endcompress %}
+    {% compress js %}{% block head_js %}{% endblock %}{% endcompress %}
+</head>
+<body>
+<el-container>
+  <el-header>{% block nav %}{% include '_nav.html' %}{% endblock %}</el-header>
+  {% block body %}{% endblock %}
+</el-container>
+
+{% compress js %}
+    <script type="text/javascript" src="{% static 'js/vue.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/axios.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/element.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/app/global.js' %}"></script>
+    {% block footer_js %}{% endblock %}
+{% endcompress %}
+</body>
+</html>
