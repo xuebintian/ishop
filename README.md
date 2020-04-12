@@ -15,7 +15,7 @@
 
 ## account
 
-### create_address
+### create_address  POST    login_required
 添加订单中的收货地址
 ```
 req:
@@ -27,10 +27,10 @@ req:
 <string> shouhuoren_phone   # 收货人电话
 
 resp:
-<bool> result   # false的情况下，客户端显示message信息
+<int> pk   # success=true则返回存库后的主键，false的情况下，客户端显示message信息
 ```
 
-### update_address
+### update_address  POST    login_required
 更新订单中的收货地址
 ```
 req:
@@ -43,30 +43,30 @@ req:
 <string> shouhuoren_phone   # 收货人电话
 
 resp:
-<bool> result   # false的情况下，客户端显示message信息
+# success=false的情况下，客户端显示message信息
 ```
 
-### delete_address
+### delete_address  POST    login_required
 删除订单中的收货地址
 ```
 req:
 <int> address_id
 
 resp:
-<bool> result   # false的情况下，客户端显示message信息
+# success=false的情况下，客户端显示message信息
 ```
 
 
 
 ## goods
 
-### root_category
+### root_category   GET
 获取一级目录
 ```
 req:
 
 resp:
-<list>  [{...}, {...}, ...] # list of category dict
+<list> data  [{...}, {...}, ...] # list of category dict
     <dict>  # category dict
     {
         id: <int>,
@@ -78,14 +78,14 @@ resp:
 
 ```
 
-### sub_category
+### sub_category    GET
 获取一级目录对应的二三级目录，三级目录是品牌目录
 ```
 req:
 <int> cate_id
 
 resp:
-<list>  [{...}, {...}, ...]     # list of category dict
+<list> data  [{...}, {...}, ...]     # list of category dict
     <dict>  # category dict
     {
         id: <int>,
@@ -103,15 +103,16 @@ resp:
 
 ```
 
-### goods_list
+### goods_list  GET
 获取二级目录下所有商品，并按照三级目录默认选中
+注意：需要检查是否登录，未登录状态下goods列表中min_price, max_price不用返回
 ```
 req:
 <int> sub_cate_id
 <int> brand_id
 
 resp:
-<list>  [{...}, {...}, ...]     # list of category dict
+<list> data  [{...}, {...}, ...]     # list of category dict
     <dict>  # category dict
     {
         id: <int>,
@@ -132,14 +133,15 @@ resp:
 
 ```
 
-### goods_detail
+### goods_detail    GET
 通过商品id获取商品详情
+注意：需要检查是否登录，未登录状态下goods列表中min_price, max_price不用返回
 ```
 req:
 <int> goods_id
 
 resp:
-<dict>  {...}
+<dict> data {...}
 {
     id: <int>,
     cate: <string>,
@@ -168,14 +170,15 @@ resp:
 
 ```
 
-### new_goods_list
+### new_goods_list  GET
 按照请求数量获取新上架商品列表
+注意：需要检查是否登录，未登录状态下goods列表中min_price, max_price不用返回
 ```
 req:
 <int> count
 
 resp:
-<list>  [{...}, {...}, ...] # list of goods dict
+<list> data  [{...}, {...}, ...] # list of goods dict
     <dict>  # goods dict
     {
         id: <int>,
@@ -188,14 +191,15 @@ resp:
 
 ```
 
-### hot_goods_list
+### hot_goods_list  GET
 按照请求数量获取畅销商品列表
+注意：需要检查是否登录，未登录状态下goods列表中min_price, max_price不用返回
 ```
 req:
 <int> count
 
 resp:
-<list>  [{...}, {...}, ...] # list of goods dict
+<list> data  [{...}, {...}, ...] # list of goods dict
     <dict>  # goods dict
     {
         id: <int>,
@@ -210,7 +214,7 @@ resp:
 
 ## order
 
-### add_to_cart
+### add_to_cart POST    login_required
 添加商品到购物车
 ```
 req:
@@ -219,10 +223,10 @@ req:
 <int> count
 
 resp:
-<bool> result   # false可能是对应的规格库存不够，客户端显示message信息
+<int> pk    # success=false可能是对应的规格库存不够，客户端显示message信息
 ```
 
-### cart_gen_order
+### cart_gen_order POST    login_required
 购物车中选中的商品列表生成订单
 ```
 req:
@@ -230,5 +234,5 @@ req:
 <int> address_id
 
 resp:
-<bool> result   # false可能是对应的规格库存不够，客户端显示message信息
+<int> pk   # sucess=false可能是对应的规格库存不够，客户端显示message信息
 ```
