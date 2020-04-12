@@ -15,7 +15,7 @@
 
 ## account
 
-### create_address  POST    login_required
+### create_address  POST    login_required  ☑️
 添加订单中的收货地址
 ```
 req:
@@ -30,7 +30,7 @@ resp:
 <int> pk   # success=true则返回存库后的主键，false的情况下，客户端显示message信息
 ```
 
-### update_address  POST    login_required
+### update_address  POST    login_required  ☑️
 更新订单中的收货地址
 ```
 req:
@@ -46,7 +46,7 @@ resp:
 # success=false的情况下，客户端显示message信息
 ```
 
-### delete_address  POST    login_required
+### delete_address  POST    login_required  ☑️
 删除订单中的收货地址
 ```
 req:
@@ -60,7 +60,7 @@ resp:
 
 ## goods
 
-### root_category   GET
+### root_category   GET ☑️
 获取一级目录
 ```
 req:
@@ -78,7 +78,7 @@ resp:
 
 ```
 
-### sub_category    GET
+### sub_category    GET ☑️
 获取一级目录对应的二三级目录，三级目录是品牌目录
 ```
 req:

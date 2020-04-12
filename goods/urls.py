@@ -4,8 +4,8 @@ from goods import views
 
 urlpatterns = [
     # html
-    url(r'^$', views.index, name='index'),
 
     # ajax
-    url(r'^api$', views.api, name='api'),
+    url(r'^root_category$', views.root_category, name='root_category'),
+    url(r'^sub_category$', views.sub_category, name='sub_category'),
 ]
